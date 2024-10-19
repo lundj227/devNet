@@ -1,0 +1,33 @@
+* {
+  color: white;
+}
+
+.landingContainer {
+  border: 1px solid white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroMainText {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+}
+.header {
+  display: flex;
+}
+
+ul {
+  display: flex;
+}

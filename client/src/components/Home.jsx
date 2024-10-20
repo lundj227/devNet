@@ -1,6 +1,6 @@
 // Home.jsx
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
 import {
   FaHome,
@@ -19,6 +19,20 @@ function Home() {
   // State to hold form data
   const [postContent, setPostContent] = useState("");
   const [postFile, setPostFile] = useState(null);
+
+  const [firstName, setFirstName] = useState("John");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve user data from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.firstName) {
+      setFirstName(user.firstName);
+    } else {
+      // If no user data, redirect to login page
+      navigate("/login");
+    }
+  }, [navigate]);
 
   // Function to handle modal open
   const openModal = () => {
@@ -66,7 +80,6 @@ function Home() {
           <FaUserCircle className="homeNavIcon" />
         </div>
       </header>
-
       {/* Main Content */}
       <main className="homeMainContent">
         <div className="homeFeed">
@@ -140,12 +153,10 @@ function Home() {
           </div>
         </aside>
       </main>
-
       {/* Floating Action Button */}
       <button className="homeFab" onClick={openModal} aria-label="Create Post">
         <FaPlusCircle />
       </button>
-
       {/* Modal for Creating a Post */}
       {isModalOpen && (
         <div className="homeModalOverlay">
@@ -183,6 +194,7 @@ function Home() {
           </div>
         </div>
       )}
+      <h1 className="homeFirstName">Welcome, {firstName}!</h1>
     </div>
   );
 }

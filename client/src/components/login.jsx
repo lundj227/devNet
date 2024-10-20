@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "../styles/login.module.css"; // Import as CSS Module
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { FaTimes } from "react-icons/fa"; // Import the FaTimes icon
+import axios from "axios"; // Import axios
 
 function Login() {
   const [identifier, setIdentifier] = useState(""); // Using identifier for username/email/phone
@@ -11,34 +12,41 @@ function Login() {
 
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simple regex checks for email and phone number
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
-    const isPhone = /^\d{10,}$/.test(identifier); // For phone numbers with at least 10 digits
-    const isUsername = !isEmail && !isPhone; // If it's not email or phone, it's a username
-
+    // Validation logic
     if (!identifier || !password) {
       setError("Both fields are required");
-    } else if (!isUsername && !isEmail && !isPhone) {
-      setError("Please enter a valid email, phone number, or username");
     } else {
       setError(""); // Reset error
-      // Handle form submission, e.g., send data to API
-      console.log("Identifier:", identifier);
-      console.log("Password:", password);
-      // Redirect to homepage after successful login
-      navigate("/"); // Adjust the path if your homepage is different
+
+      try {
+        // Send login request to backend
+        const response = await axios.post("http://localhost:8080/users/login", {
+          identifier,
+          password,
+        });
+
+        if (response.data.success) {
+          // Save user data to localStorage or context
+          localStorage.setItem("user", JSON.stringify(response.data.data));
+          // Redirect to homepage after successful login
+          navigate("/home");
+        } else {
+          setError(response.data.message);
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        setError(
+          error.response?.data?.message || "An error occurred during login"
+        );
+      }
     }
   };
 
   const handleClose = () => {
     navigate("/"); // Navigate back to the homepage
-  };
-
-  const handleSubmitRoute = () => {
-    navigate("/home");
   };
 
   return (
@@ -80,11 +88,7 @@ function Login() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className={styles["login-button"]}
-            onClick={handleSubmitRoute}
-          >
+          <button type="submit" className={styles["login-button"]}>
             Login
           </button>
         </form>

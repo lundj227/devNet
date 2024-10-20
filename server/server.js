@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const usersRouter = require("./routes/users");
+
 require("dotenv").config();
 
 const uri = process.env.MONGODB_URI;

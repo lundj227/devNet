@@ -1,129 +1,41 @@
-/* Root Variables */
-:root {
-  --signup-background-color: #06141d;
-  --signup-card-color: #1b2730;
-  --signup-blue-color: #1da1f2;
-  --signup-text-color: #ffffff;
-  --signup-placeholder-color: rgba(255, 255, 255, 0.5);
-  --border-color: rgba(255, 255, 255, 0.1);
+.heading {
+  font-size: 40px;
+  margin-bottom: 30px;
 }
 
-/* Container */
 .signupContainer {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: var(--signup-background-color);
-  padding: 20px;
 }
-
-/* Main Form Box */
 .main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--signup-card-color);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-  max-width: 600px;
-  width: 100%;
 }
 
-/* Heading */
-.heading {
-  font-size: 40px;
-  color: var(--signup-text-color);
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-/* Input Group */
 .telEmail {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
-/* Inputs */
 input {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid var(--border-color);
-  background-color: var(--signup-card-color);
-  color: var(--signup-text-color);
-  font-size: 16px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  margin-top: 5px;
+  background-color: #1b2730;
 }
 
-input::placeholder {
-  color: var(--signup-placeholder-color);
-}
-
-input:focus {
-  border-color: var(--signup-blue-color);
-  box-shadow: 0 0 10px var(--signup-blue-color);
-  outline: none;
-}
-
-/* Sign-Up Box */
 .signupBox {
-  background-color: var(--signup-card-color);
-  border: 1px solid var(--border-color);
+  background-color: #1b2730;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   margin-top: 40px;
   margin-bottom: 20px;
-  border-radius: 15px;
 }
 
-/* Button */
 button {
-  background-color: var(--signup-blue-color);
-  color: var(--signup-text-color);
-  padding: 12px 30px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.25s ease, background-color 0.25s ease;
-  width: 100%;
+  background-color: #1da1f2;
   margin-top: 15px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background-color: #0d8ddb;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 10px var(--signup-blue-color);
-}
-
-button:active {
-  transform: translateY(2px);
-  box-shadow: none;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .main {
-    padding: 20px;
-  }
-
-  .heading {
-    font-size: 32px;
-  }
-
-  button {
-    font-size: 14px;
-  }
 }

@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
+const usersRouter = require('./routes/users');
 
 const uri = "mongodb+srv://jlund3:HackUO@users.3dpkl.mongodb.net/?retryWrites=true&w=majority&appName=Users";
 
@@ -17,6 +18,7 @@ connect()
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/users', usersRouter);
 
 
 

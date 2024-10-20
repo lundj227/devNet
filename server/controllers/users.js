@@ -39,7 +39,7 @@ const createUser = async (req, res) => {
         }
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
-        const newUser = await User.create({
+        const user = await User.create({
             firstName,
             lastName,
             username,

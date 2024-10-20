@@ -37,6 +37,10 @@ function Login() {
     navigate("/"); // Navigate back to the homepage
   };
 
+  const handleSubmitRoute = () => {
+    navigate("/home");
+  };
+
   return (
     <div className={`${styles["login-root"]} ${styles["login-container"]}`}>
       <div className={styles["login-box"]}>
@@ -76,7 +80,11 @@ function Login() {
               required
             />
           </div>
-          <button type="submit" className={styles["login-button"]}>
+          <button
+            type="submit"
+            className={styles["login-button"]}
+            onClick={handleSubmitRoute}
+          >
             Login
           </button>
         </form>

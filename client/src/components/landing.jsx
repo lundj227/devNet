@@ -33,9 +33,9 @@ function Landing() {
       {/* Header */}
       <header className="header">
         <div className="header-left">
-          <Link to="/" className="logo">
+          <a href="/" className="logo">
             DevNet
-          </Link>
+          </a>
         </div>
         <div className="header-center">
           <nav>
@@ -62,9 +62,11 @@ function Landing() {
               <FaUser /> Log In
             </button>
           </Link>
-          <button className="signUpButton" aria-label="Sign Up">
-            <FaUserPlus /> Sign Up
-          </button>
+          <Link to="/signup">
+            <button className="signUpButton" aria-label="Sign Up">
+              <FaUserPlus /> Sign Up
+            </button>
+          </Link>
         </div>
       </header>
 

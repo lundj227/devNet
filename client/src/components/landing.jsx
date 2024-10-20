@@ -1,6 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
-import { useEffect, useState } from "react";
-import "../styles/landing.css";
+// Landing.jsx
+
+import React, { useEffect, useState } from "react";
+import "../styles/Landing.css";
 import {
   FaUser,
   FaUserPlus,
@@ -17,7 +18,8 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from "react-router-dom"; // Import Link only for routing
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 function Landing() {
   const [darkMode, setDarkMode] = useState(true);
@@ -26,48 +28,46 @@ function Landing() {
     AOS.init({ duration: 1000 });
   }, []);
 
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
+
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
     <div className={`landingContainer ${darkMode ? "dark" : "light"}`}>
       {/* Header */}
       <header className="header">
-        <div className="header-left">
-          <a href="/" className="logo">
-            DevNet
-          </a>
-        </div>
-        <div className="header-center">
-          <nav>
-            <ul className="navList">
-              <li>
-                <a href="#features">Features</a>
-              </li>
-              <li>
-                <a href="#testimonials">Testimonials</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="header-right">
-          <button
-            className="modeToggle"
-            onClick={toggleDarkMode}
-            aria-label="Toggle Dark Mode"
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          <Link to="/login">
-            <button className="loginButton" aria-label="Log In">
-              <FaUser /> Log In
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="signUpButton" aria-label="Sign Up">
-              <FaUserPlus /> Sign Up
-            </button>
-          </Link>
-        </div>
+        <h4 className="logo">DevNet</h4>
+        <nav>
+          <ul className="navList">
+            <li>
+              <a href="#features">Features</a>
+            </li>
+            <li>
+              <a href="#testimonials">Testimonials</a>
+            </li>
+            <li>
+              <button
+                className="modeToggle"
+                onClick={toggleDarkMode}
+                aria-label="Toggle Dark Mode"
+              >
+                {darkMode ? <FaSun /> : <FaMoon />}
+              </button>
+            </li>
+            <li>
+              <button className="loginButton" aria-label="Log In">
+                <FaUser /> Log In
+              </button>
+            </li>
+            <li>
+              <button className="signUpButton" aria-label="Sign Up">
+                <FaUserPlus /> Sign Up
+              </button>
+            </li>
+          </ul>
+        </nav>
       </header>
 
       {/* Hero Section */}
@@ -91,7 +91,6 @@ function Landing() {
             <h3>Fast Performance</h3>
             <p>Experience lightning-fast networking capabilities.</p>
           </div>
-
           <div className="featureCard" data-aos="fade-up" data-aos-delay="200">
             <FaShieldAlt className="featureIcon" />
             <h3>Secure</h3>
@@ -125,6 +124,7 @@ function Landing() {
               "DevNet has revolutionized the way I network online. The platform
               is intuitive and highly effective."
             </p>
+            <br />
             <FaQuoteRight className="quoteIcon" />
             <h4>Leroy Jenkins</h4>
             <span>Software Engineer</span>
@@ -139,10 +139,12 @@ function Landing() {
               "The security features on DevNet give me peace of mind knowing my
               data is protected."
             </p>
+            <br />
             <FaQuoteRight className="quoteIcon" />
             <h4>John Smith</h4>
             <span>Network Administrator</span>
           </div>
+          {/* Add more testimonials as needed */}
         </div>
       </section>
 
@@ -182,5 +184,6 @@ function Landing() {
     </div>
   );
 }
+
 
 export default Landing;

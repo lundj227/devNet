@@ -21,6 +21,7 @@
   --transition-ease: ease;
 
   /* Spacing */
+  --spacing-xs: 5px;
   --spacing-sm: 10px;
   --spacing-md: 20px;
   --spacing-lg: 30px;
@@ -105,18 +106,46 @@ ul {
   backdrop-filter: blur(10px);
 }
 
+/* Left Section */
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Center Section */
+.header-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Right Section */
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Logo */
 .logo {
   font-size: clamp(1.25rem, 2vw, 1.5rem);
   font-weight: 700;
   color: var(--color-text);
 }
 
+/* Navigation List */
 .navList {
   display: flex;
   gap: var(--spacing-sm);
   align-items: center;
+  justify-content: center; /* Center the nav items */
 }
 
+/* Navigation Links */
 .navList li a {
   font-weight: 500;
   color: var(--color-text);
@@ -141,34 +170,35 @@ ul {
   width: 100%;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  height: 45px;
-  width: 125px;
-  gap: 5px;
-  padding: 10px 20px;
+/* Mode Toggle Button */
+.modeToggle {
+  background: none;
   border: none;
-  border-radius: 25px;
-  font-weight: 600;
+  color: var(--color-text);
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.25s ease;
-  font-size: 0.9rem;
-  position: relative;
-  overflow: hidden;
+  transition: color 0.3s ease;
 }
 
-button:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+.modeToggle:hover {
+  color: var(--color-primary-hover);
 }
 
+/* Login Button */
 .loginButton {
   background-color: transparent;
   color: var(--color-text);
   border: 1px solid var(--color-border);
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-pill);
+  transition: background-color var(--transition-duration) var(--transition-ease),
+    transform var(--transition-duration) var(--transition-ease);
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .loginButton:hover,
@@ -177,9 +207,22 @@ button:focus {
   transform: scale(1.05);
 }
 
+/* Sign Up Button */
 .signUpButton {
   background-color: var(--color-primary);
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--border-radius-pill);
+  transition: background-color var(--transition-duration) var(--transition-ease),
+    transform var(--transition-duration) var(--transition-ease),
+    box-shadow var(--transition-duration) var(--transition-ease);
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .signUpButton:hover,

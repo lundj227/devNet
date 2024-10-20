@@ -49,10 +49,6 @@ function Login() {
     navigate("/"); // Navigate back to the homepage
   };
 
-  const handleSubmitRoute = () => {
-    navigate("/home");
-  };
-
   return (
     <div className={`${styles["login-root"]} ${styles["login-container"]}`}>
       <div className={styles["login-box"]}>

@@ -1,0 +1,346 @@
+/* homepage.css */
+
+/* Root Variables (Scoped to homePageContainer) */
+.homePageContainer {
+  --home-primary-color: #1da1f2;
+  --home-secondary-color: #ffffff;
+  --home-background-color: #06141d;
+  --home-white-color: #1b2730;
+  --home-border-color: rgba(255, 255, 255, 0.1);
+  --home-hover-bg-color: rgba(29, 161, 242, 0.1);
+  --home-font-family: "Inter", sans-serif;
+}
+
+/* General Styles */
+.homePageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--home-font-family);
+  background-color: var(--home-background-color);
+  color: var(--home-secondary-color);
+}
+
+.homePageContainer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.homePageContainer img {
+  display: block;
+}
+
+/* Header */
+.homeHeader {
+  display: flex;
+  justify-content: center; /* Center the logo */
+  align-items: center;
+  padding: 16px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--home-border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  position: relative; /* For absolute positioning of icon groups */
+}
+
+.homeNavIconGroup {
+  display: flex;
+  gap: 24px;
+}
+
+.leftIcons,
+.rightIcons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.leftIcons {
+  left: 16px;
+}
+
+.rightIcons {
+  right: 16px;
+}
+
+.homeNavIcon {
+  font-size: 24px;
+  color: var(--home-secondary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.homeNavIcon:hover,
+.homeNavIcon.active {
+  color: var(--home-primary-color);
+}
+
+.homeLogo a {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--home-primary-color);
+}
+
+/* Main Content */
+.homeMainContent {
+  display: flex;
+  flex: 1;
+  padding: 16px;
+}
+
+/* Feed */
+.homeFeed {
+  flex: 2;
+  max-width: 600px;
+}
+
+.homePostCard {
+  background-color: var(--home-white-color);
+  border: 1px solid var(--home-border-color);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  color: var(--home-secondary-color);
+}
+
+.homePostHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.homeAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.homePostUserInfo {
+  margin-left: 12px;
+}
+
+.homePostUserInfo strong {
+  display: block;
+  color: var(--home-secondary-color);
+}
+
+.homePostUserInfo span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.homePostContent {
+  padding: 0 16px 16px 16px;
+  font-size: 16px;
+  color: var(--home-secondary-color);
+}
+
+.homePostImage {
+  width: 100%;
+  height: auto;
+}
+
+.homePostActions {
+  /* Add styles for action icons */
+}
+
+/* Sidebar */
+.homeSidebar {
+  flex: 1;
+  margin-left: 32px;
+}
+
+.homeSidebarSection {
+  background-color: var(--home-white-color);
+  border: 1px solid var(--home-border-color);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 16px;
+  color: var(--home-secondary-color);
+}
+
+.homeSidebarSection h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--home-secondary-color);
+}
+
+.homeSidebarSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.homeSidebarSection li {
+  margin-bottom: 12px;
+}
+
+.homeSidebarSection li:last-child {
+  margin-bottom: 0;
+}
+
+.homeSidebarSection a {
+  display: flex;
+  align-items: center;
+  color: var(--home-secondary-color);
+  transition: color 0.3s ease;
+}
+
+.homeSidebarSection a:hover {
+  color: var(--home-primary-color);
+}
+
+.homeAvatarSmall {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Floating Action Button */
+.homeFab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: var(--home-primary-color);
+  color: var(--home-background-color);
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.homeFab:hover {
+  background-color: #0d8ddb;
+}
+
+/* Modal Overlay */
+.homeModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Modal Container */
+.homeModal {
+  background-color: var(--home-white-color);
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  color: var(--home-secondary-color);
+}
+
+/* Close Button */
+.homeModalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--home-secondary-color);
+  cursor: pointer;
+}
+
+/* Modal Heading */
+.homeModal h2 {
+  margin-bottom: 16px;
+  color: var(--home-secondary-color);
+}
+
+/* Post Form */
+.homePostForm {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Textarea */
+.homePostTextarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--home-border-color);
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 16px;
+  background-color: var(--home-background-color);
+  color: var(--home-secondary-color);
+}
+
+.homePostTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* File Input Label */
+.homeFileLabel {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--home-secondary-color);
+}
+
+/* File Input */
+.homeFileInput {
+  margin-bottom: 16px;
+  color: var(--home-secondary-color);
+}
+
+/* Submit Button */
+.homePostSubmitButton {
+  background-color: var(--home-primary-color);
+  color: var(--home-background-color);
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.homePostSubmitButton:hover {
+  background-color: #0d8ddb;
+}
+
+/* Adjustments for Dark Theme */
+.homeModal,
+.homePostTextarea {
+  background-color: var(--home-white-color);
+  color: var(--home-secondary-color);
+}
+
+.homeModalClose {
+  color: var(--home-secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homeMainContent {
+    flex-direction: column;
+  }
+
+  .homeSidebar {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .homeHeader .leftIcons,
+  .homeHeader .rightIcons {
+    display: none; /* Hide icon groups on smaller screens */
+  }
+}

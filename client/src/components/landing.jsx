@@ -32,42 +32,36 @@ function Landing() {
     <div className={`landingContainer ${darkMode ? "dark" : "light"}`}>
       {/* Header */}
       <header className="header">
-        <div className="header-left">
-          <a href="/" className="logo">
-            DevNet
-          </a>
-        </div>
-        <div className="header-center">
-          <nav>
-            <ul className="navList">
-              <li>
-                <a href="#features">Features</a>
-              </li>
-              <li>
-                <a href="#testimonials">Testimonials</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className="header-right">
-          <button
-            className="modeToggle"
-            onClick={toggleDarkMode}
-            aria-label="Toggle Dark Mode"
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          <Link to="/login">
-            <button className="loginButton" aria-label="Log In">
-              <FaUser /> Log In
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="signUpButton" aria-label="Sign Up">
-              <FaUserPlus /> Sign Up
-            </button>
-          </Link>
-        </div>
+        <h4 className="logo">DevNet</h4>
+        <nav>
+          <ul className="navList">
+            <li>
+              <a href="#features">Features</a>
+            </li>
+            <li>
+              <a href="#testimonials">Testimonials</a>
+            </li>
+            <li>
+              <button
+                className="modeToggle"
+                onClick={toggleDarkMode}
+                aria-label="Toggle Dark Mode"
+              >
+                {darkMode ? <FaSun /> : <FaMoon />}
+              </button>
+            </li>
+            <li>
+              <button className="loginButton" aria-label="Log In">
+                <FaUser /> Log In
+              </button>
+            </li>
+            <li>
+              <button className="signUpButton" aria-label="Sign Up">
+                <FaUserPlus /> Sign Up
+              </button>
+            </li>
+          </ul>
+        </nav>
       </header>
 
       {/* Hero Section */}
@@ -182,5 +176,6 @@ function Landing() {
     </div>
   );
 }
+
 
 export default Landing;

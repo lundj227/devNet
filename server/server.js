@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const usersRouter = require("./routes/users");
-
+const postsRouter = require("./routes/posts");
 require("dotenv").config();
 
 const uri = process.env.MONGODB_URI;
@@ -51,6 +51,8 @@ app.get("/test", (req, res) => {
 
 // Routes
 app.use("/users", usersRouter);
+// Add this with your other app.use statements
+app.use("/posts", postsRouter);
 
 const PORT = process.env.PORT || 8080;
 

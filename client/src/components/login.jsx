@@ -1,5 +1,5 @@
 // src/components/Login.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../styles/login.module.css"; // Import as CSS Module
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { FaTimes } from "react-icons/fa"; // Import the FaTimes icon

@@ -1,6 +1,6 @@
-// Landing.jsx
-
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Landing.css";
 import {
   FaUser,
@@ -18,8 +18,6 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
 
 function Landing() {
   const [darkMode, setDarkMode] = useState(true);
@@ -27,10 +25,6 @@ function Landing() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 

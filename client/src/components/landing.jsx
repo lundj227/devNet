@@ -1,7 +1,6 @@
-// Landing.jsx
-
-import React, { useEffect, useState } from "react";
-import "../styles/Landing.css";
+/* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
+import "../styles/landing.css";
 import {
   FaUser,
   FaUserPlus,
@@ -18,8 +17,7 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import { Link } from "react-router-dom"; // Import Link only for routing
 
 function Landing() {
   const [darkMode, setDarkMode] = useState(true);
@@ -27,10 +25,6 @@ function Landing() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
@@ -91,6 +85,7 @@ function Landing() {
             <h3>Fast Performance</h3>
             <p>Experience lightning-fast networking capabilities.</p>
           </div>
+
           <div className="featureCard" data-aos="fade-up" data-aos-delay="200">
             <FaShieldAlt className="featureIcon" />
             <h3>Secure</h3>
@@ -124,7 +119,6 @@ function Landing() {
               "DevNet has revolutionized the way I network online. The platform
               is intuitive and highly effective."
             </p>
-            <br />
             <FaQuoteRight className="quoteIcon" />
             <h4>Leroy Jenkins</h4>
             <span>Software Engineer</span>
@@ -139,12 +133,10 @@ function Landing() {
               "The security features on DevNet give me peace of mind knowing my
               data is protected."
             </p>
-            <br />
             <FaQuoteRight className="quoteIcon" />
             <h4>John Smith</h4>
             <span>Network Administrator</span>
           </div>
-          {/* Add more testimonials as needed */}
         </div>
       </section>
 

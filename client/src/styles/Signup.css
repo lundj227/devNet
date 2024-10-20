@@ -1,45 +1,41 @@
-* {
-    font-family: "Montserrat";
-}
-
 .heading {
-    font-size: 40px;
-    margin-bottom: 30px;
+  font-size: 40px;
+  margin-bottom: 30px;
 }
 
 .signupContainer {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .telEmail {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 input {
-    margin-top: 5px;
-    background-color: #1b2730;
+  margin-top: 5px;
+  background-color: #1b2730;
 }
 
 .signupBox {
-    background-color: #1b2730;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
-    margin-bottom: 20px;
+  background-color: #1b2730;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  padding: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 button {
-    background-color: #1da1f2;
-    margin-top: 15px;
+  background-color: #1da1f2;
+  margin-top: 15px;
 }

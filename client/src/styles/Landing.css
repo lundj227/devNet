@@ -379,6 +379,7 @@ ul {
   padding: 60px 20px;
   background-color: var(--color-background);
   text-align: center;
+  transition: all 0.25s ease;
 }
 
 .testimonialsTitle {
@@ -399,7 +400,7 @@ ul {
   padding: 20px;
   border-radius: 15px;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .testimonialCard:hover {

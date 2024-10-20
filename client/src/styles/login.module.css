@@ -1,0 +1,167 @@
+/* src/styles/login.module.css */
+
+.login-root {
+  --login-background-color: #06141d;
+  --login-card-color: #1b2730;
+  --login-blue-color: #1da1f2;
+  --login-text-color: #ffffff; /* Added for text color */
+}
+
+.login-root *::before,
+.login-root *::after {
+  box-sizing: border-box;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--login-background-color);
+}
+
+.login-box {
+  position: relative; /* To position the close button absolutely */
+  padding: 20px; /* Add some padding inside the box */
+  border-radius: 15px;
+  background-color: var(--login-card-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  width: 400px; /* Adjust the width to balance the content */
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure the header takes full width */
+  margin-bottom: 20px; /* Space below header */
+}
+
+.login-main-text {
+  font-size: 70px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--login-text-color);
+}
+
+.login-close-button {
+  position: absolute; /* Position absolutely within loginBox */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  background: none; /* Remove default button styling */
+  border: none; /* Remove default border */
+  font-size: 1.5rem; /* Increase font size for visibility */
+  color: white; /* Set color to white */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: color 0.25s ease; /* Smooth color transition */
+  display: flex; /* Align icon properly */
+  align-items: center; /* Center the icon vertically */
+  justify-content: center; /* Center the icon horizontally */
+  width: 70px;
+  height: 70px;
+}
+
+.login-close-button:hover,
+.login-close-button:focus {
+  color: var(--login-blue-color); /* Change color on hover/focus */
+}
+
+.login-error {
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Make sure form takes full width of the box */
+  gap: 15px; /* Space between input fields */
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Increased gap for better spacing */
+  width: 100%; /* Ensure inputs take full width */
+}
+
+.login-form input {
+  width: 100%; /* Make the input boxes take full width */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--login-card-color);
+  color: white;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.login-form input:focus {
+  border-color: var(--login-blue-color);
+  outline: none;
+}
+
+.login-button {
+  background-color: var(--login-blue-color);
+  color: white;
+  padding: 12px 30px; /* Adjust padding for better appearance */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 150px; /* Adjust the button width */
+  margin-top: 15px; /* Add some margin above the button */
+  display: flex;
+  justify-content: center;
+}
+
+.login-button:hover,
+.login-button:focus {
+  transform: scale(1.05); /* Slightly increase scale on hover/focus */
+  background-color: #2637e4;
+}
+
+/* Animations */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-header h1 {
+  animation: slideIn 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 15px; /* Reduce padding on smaller screens */
+    width: 90%; /* Make the login box take up more width on small screens */
+  }
+
+  .login-main-text {
+    font-size: 50px; /* Reduce font size on smaller screens */
+  }
+
+  .login-close-button {
+    font-size: 1.2rem; /* Adjust icon size */
+    top: 5px; /* Adjust positioning */
+    right: 5px; /* Adjust positioning */
+  }
+}

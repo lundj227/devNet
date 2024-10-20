@@ -323,6 +323,9 @@ ul {
   align-items: center;
   color: var(--color-secondary-text);
   border-radius: 20px;
+  background-image: url("/Homepage.png");
+  background-size: cover;
+  background-position: center;
 }
 
 /* Features Section */

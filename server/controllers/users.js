@@ -1,62 +1,84 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const validator = require('validator');
 
 const createUser = async (req, res) => {
     try {
+        console.log('Starting user creation process...');
         const { firstName, lastName, username, email, password } = req.body;
+
+        // Input validation
         if (!firstName || !lastName || !username || !email || !password) {
-            return res.status(400).json({ 
-                success: false,
-                message: 'Please enter all fields.'
-             });
-        }
-        if (!validator.isEmail(email)) {
+            console.log('Missing required fields');
             return res.status(400).json({
                 success: false,
-                message: 'Please enter a valid email.'
+                message: 'Please provide all required fields'
             });
         }
+
+        // Email validation
+        if (!validator.isEmail(email)) {
+            console.log('Invalid email format');
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide a valid email'
+            });
+        }
+
+        // Check if user already exists
         const existingEmail = await User.findOne({ email });
         if (existingEmail) {
+            console.log('Email already exists');
             return res.status(400).json({
                 success: false,
-                message: 'An account with this email already exists.'
+                message: 'Email already registered'
             });
         }
-        const existingUsername = await User.findOne( { username });
+
+        const existingUsername = await User.findOne({ username });
         if (existingUsername) {
+            console.log('Username already exists');
             return res.status(400).json({
                 success: false,
-                message: 'An account with this username already exists.'
+                message: 'Username already taken'
             });
         }
-        if (password.length < 8) {
-            return res.status(400).json({
-                success: false,
-                message: 'Password must be at least 6 characters long.'
-            });
-        }
-        const salt = await bcrypt.genSalt();
-        const passwordHash = await bcrypt.hash(password, salt);
+
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        console.log('Creating new user...');
+        // Create new user
         const user = await User.create({
             firstName,
             lastName,
             username,
             email: email.toLowerCase(),
-            password: passwordHash
+            password: hashedPassword
         });
 
+        console.log('User created successfully');
+        // Remove password from response
         const userResponse = user.toObject();
         delete userResponse.password;
-    } catch (error) {
-        console.error("Error in createUser: ", error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal Server Error.'
+
+        return res.status(201).json({
+            success: true,
+            message: 'User created successfully',
+            data: userResponse
         });
-        
+
+    } catch (error) {
+        console.error('Error in createUser:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     }
 };
 
-module.exports = { createUser };
+module.exports = {
+    createUser
+};

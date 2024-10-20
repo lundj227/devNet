@@ -79,6 +79,32 @@ const createUser = async (req, res) => {
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        console.log('Fetching all users...');
+        
+        // Get users and exclude password field
+        const users = await User.find({})
+            .select('-password') // Exclude password
+            .sort({ createdAt: -1 }); // Sort by newest first
+        
+        return res.status(200).json({
+            success: true,
+            count: users.length,
+            data: users
+        });
+
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Error fetching users',
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
+};
+
 module.exports = {
-    createUser
+    createUser,
+    getAllUsers
 };

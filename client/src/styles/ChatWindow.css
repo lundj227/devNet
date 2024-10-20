@@ -1,0 +1,61 @@
+/* src/styles/ChatWindow.css */
+.chat-window {
+  flex-grow: 1;
+  background-color: #0d1117;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Increase space between bubbles */
+}
+
+/* Message bubbles */
+.message {
+  max-width: 60%;
+  padding: 15px; /* Increase padding for larger bubbles */
+  border-radius: 15px;
+  font-size: 1.2rem; /* Increase font size */
+  word-wrap: break-word;
+}
+
+/* Sent message styling (User's message) */
+.sent {
+  align-self: flex-end;
+  background-color: white; /* White background for user messages */
+  color: black; /* Black text for contrast */
+  text-align: left;
+  border-radius: 15px 15px 0 15px; /* Customize corner rounding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
+}
+
+/* Received message styling (Other user's message) */
+.received {
+  align-self: flex-start;
+  background-color: #1da1f2; /* Blue background for received messages */
+  color: white; /* White text for readability */
+  text-align: left;
+  border-radius: 15px 15px 15px 0; /* Customize corner rounding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
+}
+
+
+.timestamp {
+  display: block;
+  font-size: 0.8rem;
+  color: black;
+  margin-top: 5px;
+  text-align: right; /* Adjust to left or right based on message */
+}
+
+.sent .timestamp {
+  text-align: right;
+}
+
+.received .timestamp {
+  text-align: left;
+}

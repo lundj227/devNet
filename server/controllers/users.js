@@ -2,6 +2,58 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 
+const loginUser = async (req, res) => {
+  try {
+    const { identifier, password } = req.body;
+
+    // Check if identifier and password are provided
+    if (!identifier || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide identifier and password",
+      });
+    }
+
+    // Find the user by email or username
+    let user = await User.findOne({ email: identifier });
+    if (!user) {
+      user = await User.findOne({ username: identifier });
+    }
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // Remove password from response
+    const userResponse = user.toObject();
+    delete userResponse.password;
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged in successfully",
+      data: userResponse,
+    });
+  } catch (error) {
+    console.error("Error in loginUser:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     console.log("Starting user creation process...");
@@ -105,4 +157,5 @@ const getAllUsers = async (req, res) => {
 module.exports = {
   createUser,
   getAllUsers,
+  loginUser,
 };

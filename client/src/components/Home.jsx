@@ -11,6 +11,7 @@ import {
   FaBell,
   FaTimes,
 } from "react-icons/fa";
+import axios from "axios"; // Import Axios at the top
 
 function Home() {
   // State to control modal visibility
@@ -35,6 +36,22 @@ function Home() {
       // If no user data, redirect to login page
       navigate("/login");
     }
+
+    // Fetch posts from backend
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/posts");
+        if (response.data.success) {
+          setPosts(response.data.data);
+        } else {
+          console.error("Error fetching posts:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
   }, [navigate]);
 
   // Function to handle modal open
@@ -48,25 +65,46 @@ function Home() {
     setPostContent("");
   };
 
-  // Function to handle form submission
-  const handlePostSubmit = (e) => {
+  const handlePostSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a new post object with placeholder data
-    const newPost = {
-      id: Date.now(),
-      firstName: "Jane", // Placeholder first name
-      lastName: "Doe", // Placeholder last name
-      username: "janedoe", // Placeholder username
-      content: postContent,
+    // Retrieve user data from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      // If no user data, redirect to login page
+      navigate("/login");
+      return;
+    }
+
+    // Prepare the post data
+    const postData = {
+      userName: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      body: postContent,
     };
 
-    // Add the new post to the posts array
-    setPosts([newPost, ...posts]);
+    try {
+      // Send POST request to backend
+      const response = await axios.post(
+        "http://localhost:8080/posts",
+        postData
+      );
 
-    // Reset the post content and close the modal
-    setPostContent("");
-    closeModal();
+      if (response.data.success) {
+        // Add the new post to the posts array
+        setPosts([response.data.data, ...posts]);
+
+        // Reset the post content and close the modal
+        setPostContent("");
+        closeModal();
+      } else {
+        console.error("Error creating post:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
 
   return (
@@ -91,7 +129,7 @@ function Home() {
         <div className="homeFeed">
           {/* Render Posts Dynamically */}
           {posts.map((post) => (
-            <div className="homePostCard" key={post.id}>
+            <div className="homePostCard" key={post._id}>
               <div className="homePostHeader">
                 <img
                   src="https://via.placeholder.com/50"
@@ -102,10 +140,10 @@ function Home() {
                   <strong>
                     {post.firstName} {post.lastName}
                   </strong>
-                  <span>@{post.username}</span>
+                  <span>@{post.userName}</span>
                 </div>
               </div>
-              <p className="homePostContent">{post.content}</p>
+              <p className="homePostContent">{post.body}</p>
             </div>
           ))}
         </div>

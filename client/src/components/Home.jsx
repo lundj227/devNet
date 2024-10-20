@@ -23,6 +23,9 @@ function Home() {
   const [firstName, setFirstName] = useState("John");
   const navigate = useNavigate();
 
+  // Add posts to your state
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     // Retrieve user data from localStorage
     const user = JSON.parse(localStorage.getItem("user"));
@@ -43,24 +46,27 @@ function Home() {
   const closeModal = () => {
     setIsModalOpen(false);
     setPostContent("");
-    setPostFile(null);
   };
 
   // Function to handle form submission
   const handlePostSubmit = (e) => {
     e.preventDefault();
-    // Handle the form submission logic here
-    // For example, send the data to your backend API
-    console.log("Post Content:", postContent);
-    console.log("Post File:", postFile);
 
-    // Close the modal after submission
+    // Create a new post object with placeholder data
+    const newPost = {
+      id: Date.now(),
+      firstName: "Jane", // Placeholder first name
+      lastName: "Doe", // Placeholder last name
+      username: "janedoe", // Placeholder username
+      content: postContent,
+    };
+
+    // Add the new post to the posts array
+    setPosts([newPost, ...posts]);
+
+    // Reset the post content and close the modal
+    setPostContent("");
     closeModal();
-  };
-
-  // Function to handle file input change
-  const handleFileChange = (e) => {
-    setPostFile(e.target.files[0]);
   };
 
   return (
@@ -83,31 +89,25 @@ function Home() {
       {/* Main Content */}
       <main className="homeMainContent">
         <div className="homeFeed">
-          {/* Example Post */}
-          <div className="homePostCard">
-            <div className="homePostHeader">
-              <img
-                src="https://via.placeholder.com/50"
-                alt="User Avatar"
-                className="homeAvatar"
-              />
-              <div className="homePostUserInfo">
-                <strong>John Doe</strong>
-                <span>@johndoe</span>
+          {/* Render Posts Dynamically */}
+          {posts.map((post) => (
+            <div className="homePostCard" key={post.id}>
+              <div className="homePostHeader">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User Avatar"
+                  className="homeAvatar"
+                />
+                <div className="homePostUserInfo">
+                  <strong>
+                    {post.firstName} {post.lastName}
+                  </strong>
+                  <span>@{post.username}</span>
+                </div>
               </div>
+              <p className="homePostContent">{post.content}</p>
             </div>
-            <p className="homePostContent">
-              Just finished working on a new project! Check it out and let me
-              know what you think.
-            </p>
-            <img
-              src="https://via.placeholder.com/600x400"
-              alt="Post"
-              className="homePostImage"
-            />
-            <div className="homePostActions">{/* Add action icons here */}</div>
-          </div>
-          {/* Add more posts as needed */}
+          ))}
         </div>
 
         {/* Sidebar */}
@@ -177,16 +177,6 @@ function Home() {
                 className="homePostTextarea"
                 required
               ></textarea>
-              <label htmlFor="postFile" className="homeFileLabel">
-                Upload a file (image or zip)
-              </label>
-              <input
-                type="file"
-                id="postFile"
-                accept=".jpg,.jpeg,.png,.gif,.zip"
-                onChange={handleFileChange}
-                className="homeFileInput"
-              />
               <button type="submit" className="homePostSubmitButton">
                 Post
               </button>
